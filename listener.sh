@@ -6,7 +6,7 @@ while true; do
   read -r -s -t 0.5; RETVAL=$?
   [ $RETVAL -eq 0 ] && echo -E "$REPLY" && SOFAR="$SOFAR"$'\n'"$REPLY" && continue
   if [ "$SOFAR" ]; then
-    echo "$SOFAR" |text2wave |lame - "$(printf "%03d.mp3" $COUNTER)"
+    echo "$SOFAR" |text2wave |lame --quiet - "$(printf "%03d.mp3" $COUNTER)"
     COUNTER=$(($COUNTER + 1))
     SOFAR=""
   fi
