@@ -14,12 +14,15 @@ if __name__ == "__main__":
   carry_on = True
   time_a = datetime.now()
   in_stream = sys.stdin
+  counter = 1
   while carry_on:
-    cur_line = in_stream.readline()
     if since(time_a) > 10 * interval:
-      time_a = datetime.now()
-      print("new file")
-    print(cur_line)
+        print("Outputting file")
+        with open("{0:03}".format(counter), "w") as f:
+          f.write(lines)
+        lines = ""
+        counter += 1
+        time_a = datetime.now()
+      else:
+        lines += new_char
     time.sleep(interval)
-    if cur_line == "":
-      carry_on = False
